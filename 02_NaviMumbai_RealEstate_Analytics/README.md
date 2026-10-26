@@ -56,6 +56,10 @@ The Power BI file has six pages: an introduction, a market overview dashboard, a
 
 Screenshots are in the 04_Dashboard folder.
 
+## Live Dashboard
+
+🔗 [View the interactive Power BI dashboard](https://app.powerbi.com/links/6HMgOmTpD5?ctid=21cded39-1d9a-4cb0-8abd-89d2a283d427&pbi_source=linkShare)
+
 ## Note
 
 The database password in the cleaning notebook has been replaced with a placeholder. Replace YOUR_PASSWORD with your own MySQL password to run it.
