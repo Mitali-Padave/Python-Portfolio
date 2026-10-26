@@ -32,22 +32,39 @@ Panvel and Taloja offer the best value. A 2BHK there costs roughly a third of wh
 
 ## Project structure
 NaviMumbai_RealEstate_Analytics/
+
 ├── 01_Scraping/
+
 │ ├── MagicBricks_Scraping.ipynb
+
 │ └── MagicBricks_NaviMumbai_raw.xlsx
+
 ├── 02_Cleaning/
+
 │ ├── MagicBricks_Data_Cleaning.ipynb
+
 │ └── MagicBricks_NaviMumbai_clean.xlsx
+
 ├── 03_SQL/
+
 │ ├── 01_schema.sql
+
 │ └── 02_analysis.sql
+
 └── 04_Dashboard/
+
 ├── 01_Introduction.png
+
 ├── 02_Market_Overview.png
+
 ├── 03_Locality_Explorer.png
+
 ├── 04_Key_Influencers.png
+
 ├── 05_Decomposition.png
+
 ├── 06_Key_Insights.png
+
 └── Real_Estate_MagicBricks.pbix
 
 ## Dashboards
