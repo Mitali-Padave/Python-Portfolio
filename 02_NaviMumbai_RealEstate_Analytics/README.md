@@ -20,8 +20,8 @@ Python, pandas, numpy, Selenium, BeautifulSoup, MySQL, Power BI, DAX
 ## Key insights
 
 - 1,608 listings analyzed; average price ~₹0.99 Cr, ~₹13,218 per sqft, average size ~703 sqft
-- 87% of listings are resale, only 13% new construction — a resale-driven market
-- 1 and 2 BHK make up 86% of supply — caters to first-time buyers
+- 87% of listings are resale, only 13% new construction - a resale-driven market
+- 1 and 2 BHK make up 86% of supply - caters to first-time buyers
 - Panvel and Kharghar have the most listings
 - 3.7x price-per-sqft gap: Seawoods (~₹31,400) vs Taloja (~₹8,400)
 - 89% of listings are posted directly by owners
