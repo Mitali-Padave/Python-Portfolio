@@ -21,7 +21,6 @@ CREATE TABLE properties_raw (
     posted_by_type  VARCHAR(50),
     posted_by_name  VARCHAR(255),
     price_per_sqft  DOUBLE,
-    pps_outlier     INT,
     price_band      VARCHAR(50)
 );
 
@@ -48,7 +47,6 @@ CREATE TABLE properties_raw (
     posted_by_type  VARCHAR(50),
     posted_by_name  VARCHAR(255),
     price_per_sqft  DOUBLE,
-    pps_outlier     INT,
     price_band      VARCHAR(50)
 );
 
@@ -123,3 +121,46 @@ SELECT COUNT(*) FROM properties WHERE floor_no = 0;
 
 SELECT COUNT(*) FROM localities;
 SELECT COUNT(*) FROM properties_raw;
+
+
+-- =========================================
+-- RELOAD WITH UPDATED DATA (1608 rows, 1-4 BHK)
+-- society column removed, pps_outlier added
+-- =========================================
+
+USE magicbricks;
+
+-- properties_raw is recreated by to_sql (pandas), so we don't CREATE it manually.
+-- Just confirm it loaded:
+SELECT COUNT(*) FROM properties_raw;   -- should be 1608
+
+SET SQL_SAFE_UPDATES = 0;
+
+-- clear old data from both tables
+DELETE FROM properties;
+ALTER TABLE properties AUTO_INCREMENT = 1;
+DELETE FROM localities;
+ALTER TABLE localities AUTO_INCREMENT = 1;
+
+-- reload localities
+INSERT INTO localities (locality_name)
+SELECT DISTINCT locality
+FROM properties_raw
+WHERE locality IS NOT NULL;
+
+-- reload properties WITHOUT society
+INSERT INTO properties (
+    locality_id, bhk, bathroom, area_type, area_sqft,
+    furnishing, floor_no, total_floors, transaction_type,
+    posted_by_type, posted_by_name, price_inr, price_per_sqft, pps_outlier, price_band
+)
+SELECT
+    l.locality_id, r.bhk, r.bathroom, r.area_type, r.area_sqft,
+    r.furnishing, r.floor_no, r.total_floors, r.`transaction`,
+    r.posted_by_type, r.posted_by_name, r.price_inr, r.price_per_sqft, r.pps_outlier, r.price_band
+FROM properties_raw r
+LEFT JOIN localities l ON r.locality = l.locality_name;
+
+-- check
+SELECT COUNT(*) FROM properties;    -- ~1608
+SELECT COUNT(*) FROM localities;    -- ~59
